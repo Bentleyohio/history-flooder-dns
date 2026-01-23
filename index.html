@@ -15,7 +15,6 @@
       justify-content: center;
       height: 100vh;
       margin: 0;
-      overflow: hidden;
     }
 
     h1 {
@@ -25,7 +24,6 @@
       text-shadow: 0 0 10px #1e90ff;
     }
 
-    /* STATUS BAR */
     #statusBox {
       display: flex;
       align-items: center;
@@ -41,16 +39,14 @@
       width: 14px;
       height: 14px;
       border-radius: 50%;
-      background: #22c55e; /* green default */
+      background: #22c55e;
       box-shadow: 0 0 10px #22c55e;
     }
 
     #statusText {
       font-size: 18px;
-      letter-spacing: 0.5px;
     }
 
-    /* BUTTONS */
     .btn {
       padding: 15px 40px;
       margin: 10px;
@@ -69,7 +65,6 @@
       box-shadow: 0 0 15px rgba(0, 150, 255, 0.4);
     }
 
-    /* METHOD SELECTOR */
     #method {
       margin-bottom: 20px;
       padding: 10px 20px;
@@ -87,25 +82,79 @@
 
   <h1>Clever l Portal</h1>
 
-  <!-- STATUS BAR -->
   <div id="statusBox">
     <div id="statusLight"></div>
     <div id="statusText">Ready</div>
   </div>
 
-  <!-- METHOD SELECTOR -->
   <select id="method">
     <option value="normal">Normal</option>
     <option value="waves">Waves</option>
   </select>
 
-  <!-- BUTTONS -->
   <button class="btn" id="btn25">Open 25 Tabs</button>
   <button class="btn" id="btn50">Open 50 Tabs</button>
   <button class="btn" id="btn100">Open 100 Tabs</button>
 
-  <!-- LOAD TYPESCRIPT (compiled JS) -->
-  <script type="module" src="https://bentleyohio.github.io/test-blooket/src/main.js"></script>
+  <script>
+    const eduSites = [
+      "https://classroom.google.com",
+      "https://www.khanacademy.org",
+      "https://www.edpuzzle.com",
+      "https://www.getepic.com",
+      "https://www.duolingo.com",
+      "https://www.nasa.gov",
+      "https://www.nationalgeographic.com",
+      "https://www.code.org",
+      "https://www.typing.com",
+      "https://www.brainpop.com"
+    ];
+
+    const statusLight = document.getElementById("statusLight");
+    const statusText = document.getElementById("statusText");
+    const methodSelect = document.getElementById("method");
+
+    function setStatus(text, color) {
+      statusText.textContent = text;
+      statusLight.style.background = color;
+      statusLight.style.boxShadow = `0 0 10px ${color}`;
+    }
+
+    async function launchTabs(count) {
+      const method = methodSelect.value;
+
+      setStatus("Made by Bentley...", "#3b82f6"); // blue
+      await new Promise(res => setTimeout(res, 2000));
+
+      if (method === "normal") {
+        setStatus("Opening tabs...", "#22c55e"); // green
+        for (let i = 0; i < count; i++) {
+          window.open(eduSites[i % eduSites.length], "_blank");
+        }
+      }
+
+      if (method === "waves") {
+        setStatus("Opening in waves...", "#22c55e");
+        let opened = 0;
+        const waveSize = 5;
+
+        while (opened < count) {
+          for (let i = 0; i < waveSize && opened < count; i++) {
+            window.open(eduSites[opened % eduSites.length], "_blank");
+            opened++;
+          }
+          await new Promise(res => setTimeout(res, 300));
+        }
+      }
+
+      setStatus("Ready", "#22c55e");
+    }
+
+    document.getElementById("btn25").onclick = () => launchTabs(25);
+    document.getElementById("btn50").onclick = () => launchTabs(50);
+    document.getElementById("btn100").onclick = () => launchTabs(100);
+  </script>
 
 </body>
 </html>
+
