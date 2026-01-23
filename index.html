@@ -96,66 +96,93 @@
   <button class="btn" id="btn50">Open 50 Tabs</button>
   <button class="btn" id="btn100">Open 100 Tabs</button>
 
-  <script>
-    const eduSites = [
-      "https://classroom.google.com",
-      "https://www.khanacademy.org",
-      "https://www.edpuzzle.com",
-      "https://www.getepic.com",
-      "https://www.duolingo.com",
-      "https://www.nasa.gov",
-      "https://www.nationalgeographic.com",
-      "https://www.code.org",
-      "https://www.typing.com",
-      "https://www.brainpop.com"
-    ];
+ <script>
+  // List of search topics (safe + educational)
+  const searchTerms = [
+    "math practice",
+    "science facts",
+    "history timeline",
+    "coding for beginners",
+    "solar system info",
+    "grammar exercises",
+    "geography quiz",
+    "reading comprehension",
+    "typing lessons",
+    "biology basics",
+    "chemistry intro",
+    "algebra help",
+    "geometry problems",
+    "world capitals",
+    "famous inventors",
+    "study tips",
+    "earth science",
+    "physics basics",
+    "english vocabulary",
+    "computer science basics",
+    "space exploration",
+    "weather and climate",
+    "ecosystems",
+    "ancient civilizations",
+    "art history"
+  ];
 
-    const statusLight = document.getElementById("statusLight");
-    const statusText = document.getElementById("statusText");
-    const methodSelect = document.getElementById("method");
+  const statusLight = document.getElementById("statusLight");
+  const statusText = document.getElementById("statusText");
+  const methodSelect = document.getElementById("method");
 
-    function setStatus(text, color) {
-      statusText.textContent = text;
-      statusLight.style.background = color;
-      statusLight.style.boxShadow = `0 0 10px ${color}`;
+  function setStatus(text, color) {
+    statusText.textContent = text;
+    statusLight.style.background = color;
+    statusLight.style.boxShadow = `0 0 10px ${color}`;
+  }
+
+  // Build a unique Google search URL
+  function buildSearchURL(term, index) {
+    return `https://www.google.com/search?q=${encodeURIComponent(term)}&id=${index}`;
+  }
+
+  async function launchTabs(count) {
+    const method = methodSelect.value;
+
+    setStatus("Made by Bentley...", "#3b82f6");
+    await new Promise(res => setTimeout(res, 2000));
+
+    if (method === "normal") {
+      setStatus("Opening tabs...", "#22c55e");
+
+      for (let i = 0; i < count; i++) {
+        const term = searchTerms[i % searchTerms.length];
+        const url = buildSearchURL(term, i);
+        window.open(url, "_blank");
+      }
     }
 
-    async function launchTabs(count) {
-      const method = methodSelect.value;
+    if (method === "waves") {
+      setStatus("Opening in waves...", "#22c55e");
 
-      setStatus("Made by Bentley...", "#3b82f6");
-      await new Promise(res => setTimeout(res, 2000));
+      let opened = 0;
+      const waveSize = 5;
 
-      if (method === "normal") {
-        setStatus("Opening tabs...", "#22c55e");
-        for (let i = 0; i < count; i++) {
-          window.open(eduSites[i % eduSites.length], "_blank");
+      while (opened < count) {
+        for (let i = 0; i < waveSize && opened < count; i++) {
+          const term = searchTerms[opened % searchTerms.length];
+          const url = buildSearchURL(term, opened);
+          window.open(url, "_blank");
+          opened++;
         }
+        await new Promise(res => setTimeout(res, 300));
       }
-
-      if (method === "waves") {
-        setStatus("Opening in waves...", "#22c55e");
-        let opened = 0;
-        const waveSize = 5;
-
-        while (opened < count) {
-          for (let i = 0; i < waveSize && opened < count; i++) {
-            window.open(eduSites[opened % eduSites.length], "_blank");
-            opened++;
-          }
-          await new Promise(res => setTimeout(res, 300));
-        }
-      }
-
-      setStatus("Ready", "#22c55e");
     }
 
-    document.getElementById("btn25").onclick = () => launchTabs(25);
-    document.getElementById("btn50").onclick = () => launchTabs(50);
-    document.getElementById("btn100").onclick = () => launchTabs(100);
-  </script>
+    setStatus("Ready", "#22c55e");
+  }
 
-</body>
+  document.getElementById("btn25").onclick = () => launchTabs(25);
+  document.getElementById("btn50").onclick = () => launchTabs(50);
+  document.getElementById("btn100").onclick = () => launchTabs(100);
+</script>
+
+</body> 
 </html>
 
 
