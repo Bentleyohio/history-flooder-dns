@@ -1,22 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Bentley Tab Launcher</title>
   <meta charset="UTF-8" />
+  <title>Clever l Portal</title>
+
+  <style>
+    body {
+      background: #0d0d0f;
+      color: #e5e5e5;
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #7ab8ff;
+      text-shadow: 0 0 10px #1e90ff;
+    }
+
+    /* STATUS BAR */
+    #statusBox {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      border-radius: 10px;
+      background: #1a1a1d;
+      margin-bottom: 25px;
+      box-shadow: 0 0 12px rgba(0, 150, 255, 0.3);
+    }
+
+    #statusLight {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #22c55e; /* green default */
+      box-shadow: 0 0 10px #22c55e;
+    }
+
+    #statusText {
+      font-size: 18px;
+      letter-spacing: 0.5px;
+    }
+
+    /* BUTTONS */
+    .btn {
+      padding: 15px 40px;
+      margin: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #1f1f22;
+      color: white;
+      transition: 0.2s;
+      box-shadow: 0 0 10px rgba(0, 150, 255, 0.2);
+    }
+
+    .btn:hover {
+      background: #2a2a2e;
+      box-shadow: 0 0 15px rgba(0, 150, 255, 0.4);
+    }
+
+    /* METHOD SELECTOR */
+    #method {
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      background: #1f1f22;
+      color: white;
+      border: none;
+      box-shadow: 0 0 10px rgba(0, 150, 255, 0.2);
+    }
+  </style>
 </head>
+
 <body>
 
-  <div id="status">Ready</div>
+  <h1>Clever l Portal</h1>
 
+  <!-- STATUS BAR -->
+  <div id="statusBox">
+    <div id="statusLight"></div>
+    <div id="statusText">Ready</div>
+  </div>
+
+  <!-- METHOD SELECTOR -->
   <select id="method">
     <option value="normal">Normal</option>
     <option value="waves">Waves</option>
   </select>
 
-  <button id="btn25">Open 25 Tabs</button>
-  <button id="btn50">Open 50 Tabs</button>
-  <button id="btn100">Open 100 Tabs</button>
+  <!-- BUTTONS -->
+  <button class="btn" id="btn25">Open 25 Tabs</button>
+  <button class="btn" id="btn50">Open 50 Tabs</button>
+  <button class="btn" id="btn100">Open 100 Tabs</button>
 
-  <script type="module" src="./src/main.ts"></script>
+  <!-- LOAD TYPESCRIPT (compiled JS) -->
+  <script type="module" src="./src/main.js"></script>
+
 </body>
 </html>
