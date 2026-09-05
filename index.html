@@ -1,23 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Clever l Portal</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riverside High School | Where Leaders Rise</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --navy: #0f2044;
+      --navy2: #1a3260;
+      --gold: #b8962e;
+      --gold2: #d4af50;
+      --cream: #faf8f3;
+      --white: #ffffff;
+      --charcoal: #1c1c1c;
+      --muted: #6b7280;
+      --border: #e5e1d8;
+    }
+
+    html { scroll-behavior: smooth; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
+      font-family: 'Lato', sans-serif;
       background: #0d0d0f;
       color: #e5e5e5;
+      overflow-x: hidden;
+    }
+
+    /* DECOY COVER SCREEN (RIVERSIDE HIGH) */
+    #decoy-cover {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-y: auto;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .util-bar {
+      background: var(--navy);
+      border-bottom: 2px solid var(--gold);
+      padding: 7px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.6);
+      gap: 20px;
+    }
+    .util-bar span { white-space: nowrap; }
+    .util-bar a { color: rgba(255, 255, 255, 0.6); text-decoration: none; margin-left: 18px; }
+    .util-socials { display: flex; gap: 14px; align-items: center; }
+    .util-socials a { margin: 0; display: flex; align-items: center; gap: 5px; }
+    .util-socials svg { width: 13px; height: 13px; fill: var(--gold); }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--white);
+      border-bottom: 3px solid var(--gold);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5%;
+      height: 72px;
+    }
+
+    .nav-logo {
+      font-family: 'Times New Roman', 'Playfair Display', serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      list-style: none;
+    }
+    .nav-links a {
+      display: block;
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      text-decoration: none;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .hero-decoy {
+      height: calc(100vh - 100px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+      padding: 0 20px;
+    }
+    .hero-decoy h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    /* ACTUAL APP STYLES (CLEVER PORTAL) */
+    .portal-wrapper {
       font-family: "Segoe UI", sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      margin: 0;
+      width: 100vw;
     }
 
-    h1 {
+    .portal-wrapper h1 {
       font-size: 32px;
       margin-bottom: 20px;
       color: #7ab8ff;
@@ -77,112 +189,129 @@
     }
   </style>
 </head>
-
 <body>
 
-  <h1>Clever l Portal</h1>
+  <!-- DECOY COVER SCREEN (RIVERSIDE HIGH) -->
+  <div id="decoy-cover">
+    <div class="util-bar">
+      <span>📍 400 Riverside Drive, Millbrook, CA | ☎ (714) 555-0192 | ✉ info@riversidehigh.edu</span>
+      <div class="util-socials">
+        <a href="https://www.facebook.com/RiversideHS/"><svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a>
+        <a href="https://x.com/riversidelcps"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      </div>
+    </div>
 
-  <div id="statusBox">
-    <div id="statusLight"></div>
-    <div id="statusText">Ready</div>
+    <nav>
+      <a href="#" class="nav-logo">Riverside High</a>
+      <ul class="nav-links">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Academics</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero-decoy">
+      <h1>Riverside High School</h1>
+      <p>Where Leaders Rise | Loading Portal...</p>
+    </div>
   </div>
 
-  <select id="method">
-    <option value="normal">Normal</option>
-    <option value="waves">Waves</option>
-  </select>
+  <!-- ACTUAL TOOL CONTENT (CLEVER PORTAL) -->
+  <div class="portal-wrapper">
+    <h1>Clever l Portal</h1>
 
-  <button class="btn" id="btn25">Open 25 Tabs</button>
-  <button class="btn" id="btn50">Open 50 Tabs</button>
-  <button class="btn" id="btn100">Open 100 Tabs</button>
+    <div id="statusBox">
+      <div id="statusLight"></div>
+      <div id="statusText">Ready</div>
+    </div>
 
- <script>
-  // List of search topics (safe + educational)
-  const searchTerms = [
-    "math practice",
-    "science facts",
-    "history timeline",
-    "coding for beginners",
-    "solar system info",
-    "grammar exercises",
-    "geography quiz",
-    "reading comprehension",
-    "typing lessons",
-    "biology basics",
-    "chemistry intro",
-    "algebra help",
-    "geometry problems",
-    "world capitals",
-    "famous inventors",
-    "study tips",
-    "earth science",
-    "physics basics",
-    "english vocabulary",
-    "computer science basics",
-    "space exploration",
-    "weather and climate",
-    "ecosystems",
-    "ancient civilizations",
-    "art history"
-  ];
+    <select id="method">
+      <option value="normal">Normal</option>
+      <option value="waves">Waves</option>
+    </select>
 
-  const statusLight = document.getElementById("statusLight");
-  const statusText = document.getElementById("statusText");
-  const methodSelect = document.getElementById("method");
+    <div>
+      <button class="btn" id="btn25">Open 25 Tabs</button>
+      <button class="btn" id="btn50">Open 50 Tabs</button>
+      <button class="btn" id="btn100">Open 100 Tabs</button>
+    </div>
+  </div>
 
-  function setStatus(text, color) {
-    statusText.textContent = text;
-    statusLight.style.background = color;
-    statusLight.style.boxShadow = `0 0 10px ${color}`;
-  }
+  <script>
+    // DECOY AUTO-HIDE LOGIC
+    window.addEventListener('DOMContentLoaded', () => {
+      const cover = document.getElementById('decoy-cover');
 
-  // Build a unique Google search URL
-  function buildSearchURL(term, index) {
-    return `https://www.google.com/search?q=${encodeURIComponent(term)}&id=${index}`;
-  }
+      setTimeout(() => {
+        cover.style.opacity = '0';
+        cover.style.visibility = 'hidden';
+        document.title = "Clever l Portal"; // Switch title to portal
+      }, 1500); // 1.5 seconds delay
+    });
 
-  async function launchTabs(count) {
-    const method = methodSelect.value;
+    // CLEVER PORTAL SCRIPT LOGIC
+    const searchTerms = [
+      "math practice", "science facts", "history timeline", "coding for beginners",
+      "solar system info", "grammar exercises", "geography quiz", "reading comprehension",
+      "typing lessons", "biology basics", "chemistry intro", "algebra help",
+      "geometry problems", "world capitals", "famous inventors", "study tips",
+      "earth science", "physics basics", "english vocabulary", "computer science basics",
+      "space exploration", "weather and climate", "ecosystems", "ancient civilizations", "art history"
+    ];
 
-    setStatus("Made by Bentley...", "#3b82f6");
-    await new Promise(res => setTimeout(res, 2000));
+    const statusLight = document.getElementById("statusLight");
+    const statusText = document.getElementById("statusText");
+    const methodSelect = document.getElementById("method");
 
-    if (method === "normal") {
-      setStatus("Opening tabs...", "#22c55e");
-
-      for (let i = 0; i < count; i++) {
-        const term = searchTerms[i % searchTerms.length];
-        const url = buildSearchURL(term, i);
-        window.open(url, "_blank");
-      }
+    function setStatus(text, color) {
+      statusText.textContent = text;
+      statusLight.style.background = color;
+      statusLight.style.boxShadow = `0 0 10px ${color}`;
     }
 
-    if (method === "waves") {
-      setStatus("Opening in waves...", "#22c55e");
+    function buildSearchURL(term, index) {
+      return `https://www.google.com/search?q=${encodeURIComponent(term)}&id=${index}`;
+    }
 
-      let opened = 0;
-      const waveSize = 5;
+    async function launchTabs(count) {
+      const method = methodSelect.value;
 
-      while (opened < count) {
-        for (let i = 0; i < waveSize && opened < count; i++) {
-          const term = searchTerms[opened % searchTerms.length];
-          const url = buildSearchURL(term, opened);
+      setStatus("Made by Bentley...", "#3b82f6");
+      await new Promise(res => setTimeout(res, 2000));
+
+      if (method === "normal") {
+        setStatus("Opening tabs...", "#22c55e");
+
+        for (let i = 0; i < count; i++) {
+          const term = searchTerms[i % searchTerms.length];
+          const url = buildSearchURL(term, i);
           window.open(url, "_blank");
-          opened++;
         }
-        await new Promise(res => setTimeout(res, 300));
       }
+
+      if (method === "waves") {
+        setStatus("Opening in waves...", "#22c55e");
+
+        let opened = 0;
+        const waveSize = 5;
+
+        while (opened < count) {
+          for (let i = 0; i < waveSize && opened < count; i++) {
+            const term = searchTerms[opened % searchTerms.length];
+            const url = buildSearchURL(term, opened);
+            window.open(url, "_blank");
+            opened++;
+          }
+          await new Promise(res => setTimeout(res, 300));
+        }
+      }
+
+      setStatus("Ready", "#22c55e");
     }
 
-    setStatus("Ready", "#22c55e");
-  }
+    document.getElementById("btn25").onclick = () => launchTabs(25);
+    document.getElementById("btn50").onclick = () => launchTabs(50);
+    document.getElementById("btn100").onclick = () => launchTabs(100);
+  </script>
 
-  document.getElementById("btn25").onclick = () => launchTabs(25);
-  document.getElementById("btn50").onclick = () => launchTabs(50);
-  document.getElementById("btn100").onclick = () => launchTabs(100);
-</script>
-
-</body> 
+</body>
 </html>
-
-
